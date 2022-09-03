@@ -28,6 +28,8 @@ async def on_command_error(ctx, error):
 
 @client.event
 async def on_application_command_error(interaction: nextcord.Interaction, error):
+    error = getattr(error, 'original', error)
+    
     if isinstance(error, CallableOnCooldown):
         await interaction.send(error)
     if isinstance(error, application_checks.errors.ApplicationMissingRole):
