@@ -31,10 +31,10 @@ class server(commands.Cog):
         await btns.wait()
         if btns.value:
             try:
-                os.system(f"taskkill /f /im \"{config.SERVER_FILE_NAME}\"")
+                os.system(f"taskkill /im \"{config.SERVER_FILE_NAME}\"")
                 await asyncio.sleep(5)
                 os.startfile(config.SERVER_FILE_PATH)
-                await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
+                await interaction.channel.send(f'Server is back online, have fun!\n~{interaction.user}')
             except Exception:
                 await interaction.send('An error occurred.', ephemeral=True)
         else:
@@ -88,10 +88,10 @@ class server(commands.Cog):
             if last_message:
                 if last_message == server_off_desc:
                     await channel.purge(limit=1)
-                    await channel.send(embed=server_on_embed)
+                    await channel.send(f'<@&{config.SERVER_STATUS_ROLE}>', embed=server_on_embed)
                     print(f'[{self.noow()}] - The server is on.')
             else:
-                await channel.send(embed=server_on_embed)
+                await channel.send(f'<@&{config.SERVER_STATUS_ROLE}>', embed=server_on_embed)
                 print(f'[{self.noow()}] - The server is on.')
                
     @check_server.before_loop
