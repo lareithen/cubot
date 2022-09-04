@@ -34,7 +34,7 @@ class server(commands.Cog):
                 os.system(f"taskkill /im \"{config.SERVER_FILE_NAME}\"")
                 await asyncio.sleep(5)
                 os.startfile(config.SERVER_FILE_PATH)
-                await interaction.channel.send(f'Server is back online, have fun!\n~{interaction.user}')
+                await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
             except Exception:
                 await interaction.send('An error occurred.', ephemeral=True)
         else:
