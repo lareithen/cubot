@@ -31,7 +31,7 @@ class server(commands.Cog):
         await btns.wait()
         if btns.value:
             try:
-                os.system(f"taskkill /im \"{config.SERVER_FILE_NAME}\"")
+                os.system(f"taskkill /f /im \"{config.SERVER_FILE_NAME}\"")
                 await asyncio.sleep(5)
                 os.startfile(config.SERVER_FILE_PATH)
                 await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
