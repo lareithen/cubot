@@ -6,8 +6,6 @@ GUILD = 954723700052205578
 DEVELOPER_ROLE = 979550913704378398
 SUGGESTIONS_CHANNEL = 1010884840230498314
 
-SERVER_FILE_PATH = 'C:\\Users\\Administrator\\source\\repos\\Cubix Worlds Server\\Cubix Worlds Server\\bin\\Release\\Cubix Worlds Server.exe'
-SERVER_FILE_NAME = 'Cubix Worlds Server.exe'
 SERVER_HOST = 'localhost'
 SERVER_PORT = 26950
 SERVER_REMOTE_PORT = 7777
