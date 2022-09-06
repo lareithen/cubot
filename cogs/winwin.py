@@ -28,7 +28,7 @@ class winwin(commands.Cog):
                 list_str += self.items[i]['name'] + '\n'
             return list_str
 
-    @nextcord.slash_command(description='Creates account for you.', guild_ids=[config.GUILD])
+    @nextcord.slash_command(description='[WIN/WIN] Creates account for you.', guild_ids=[config.GUILD])
     async def win_create_account(self, interaction: nextcord.Interaction):
         author = interaction.user
         author_db = self.db.get(self.query.id == author.id)
@@ -38,7 +38,7 @@ class winwin(commands.Cog):
             self.db.insert({'id': author.id, 'points': 0, 'tier': 0})
             await interaction.send('Your account has been successfully created. ')
 
-    @nextcord.slash_command(description="Displays the user's account.", guild_ids=[config.GUILD])
+    @nextcord.slash_command(description="[WIN/WIN] Displays the user's account.", guild_ids=[config.GUILD])
     async def win_account(self, interaction: nextcord.Interaction, user: nextcord.Member=nextcord.SlashOption(required=False)):
         embed = nextcord.Embed(color=0, title='')
 
@@ -46,9 +46,9 @@ class winwin(commands.Cog):
             user_db = self.db.get(self.query.id == user.id)
             if user_db:
                 embed.title = f"{user}'s account"
-                embed.add_field(name='`Account ID`', value=user_db['id'], inline=False)
-                embed.add_field(name='`Points`', value=user_db['points'], inline=False)
-                embed.add_field(name='`Claim List`', value=self.claim_list(user_db['tier']), inline=False)
+                embed.add_field(name='Account ID', value=user_db['id'], inline=False)
+                embed.add_field(name='Points', value=user_db['points'], inline=False)
+                embed.add_field(name='Claim List', value=self.claim_list(user_db['tier']), inline=False)
                 embed.set_thumbnail(url=user.avatar)
                 await interaction.send(embed=embed)
             else:
@@ -58,15 +58,15 @@ class winwin(commands.Cog):
             author_db = self.db.get(self.query.id == author.id)
             if author_db:
                 embed.title = f"{author}'s account"
-                embed.add_field(name='`Account ID`', value=author_db['id'], inline=False)
-                embed.add_field(name='`Points`', value=author_db['points'], inline=False)
-                embed.add_field(name='`Claim List`', value=self.claim_list(author_db['tier']), inline=False)
+                embed.add_field(name='Account ID', value=author_db['id'], inline=False)
+                embed.add_field(name='Points', value=author_db['points'], inline=False)
+                embed.add_field(name='Claim List', value=self.claim_list(author_db['tier']), inline=False)
                 embed.set_thumbnail(url=author.avatar)
                 await interaction.send(embed=embed)
             else:
                 await interaction.send("You don't have an account. If you want create it, use `/win_create_account` command.")
 
-    @nextcord.slash_command(description='Sends specified amount of points to the specified user.', guild_ids=[config.GUILD])
+    @nextcord.slash_command(description='[WIN/WIN] Sends specified amount of points to the specified user.', guild_ids=[config.GUILD])
     @application_checks.has_role(config.DEVELOPER_ROLE)
     async def win_give(self, interaction: nextcord.Interaction, user: nextcord.Member=nextcord.SlashOption(required=True), amount: int=nextcord.SlashOption(required=True)):
         user_db = self.db.get(self.query.id == user.id)
@@ -76,7 +76,7 @@ class winwin(commands.Cog):
         else:
             await interaction.send("This user doesn't have an account.")
 
-    @nextcord.slash_command(description='Gives your claimable awards.', guild_ids=[config.GUILD])
+    @nextcord.slash_command(description='[WIN/WIN] Gives your claimable awards.', guild_ids=[config.GUILD])
     async def win_claim(self, interaction: nextcord.Interaction):
         author = interaction.user
         author_db = self.db.get(self.query.id == author.id)
