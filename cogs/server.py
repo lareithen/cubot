@@ -1,4 +1,4 @@
-import nextcord, config, socket, cooldowns, socket, datetime
+import nextcord, config, os, asyncio, cooldowns, socket, datetime
 from nextcord.ext import commands, application_checks, tasks
 
 class buttons(nextcord.ui.View):
