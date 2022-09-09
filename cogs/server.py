@@ -31,17 +31,10 @@ class server(commands.Cog):
         await btns.wait()
         if btns.value:
             try:
-                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                sock.connect((config.HOST, config.SERVER_REMOTE_PORT))
-                sock.send(b'REBOOT')
-                while True:
-                    data = sock.recv(4096)
-                    break
-
-                if data == b'REBOOT SUCCESS':
-                    await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
-                else:
-                    await interaction.send('An error occurred.', ephemeral=True)
+                os.system(f"taskkill /f /im \"{config.SERVER_FILE_NAME}\"")
+                await asyncio.sleep(5)
+                os.startfile(config.SERVER_FILE_PATH)
+                await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
             except Exception:
                 await interaction.send('An error occurred.', ephemeral=True)
         else:
