@@ -1,9 +1,12 @@
 # cubot
-Official bot of Cubix Worlds Discord Server.
+Official bot of [Cubix Worlds Discord Server](https://discord.gg/8XByfRES7n).
 
-https://discord.gg/cubixworlds
+## Installation
 
-### TODO
+`pip3 install -r requirements.txt`
+`python3 cubot.py`
+
+## TODO
 
 - [ ] Private voice channel system
 - [ ] Economy & currency system
