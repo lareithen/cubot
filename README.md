@@ -3,7 +3,7 @@ Official bot of Cubix Worlds Discord Server.
 
 https://discord.gg/cubixworlds
 
-## TODO
+### TODO
 
 - [ ] Private voice channel system
 - [ ] Economy & currency system
