@@ -4,6 +4,7 @@ from cooldowns import CallableOnCooldown #pip install function-cooldowns
 
 intents=nextcord.Intents.default()
 intents.message_content = True
+intents.members = True
 client = commands.Bot(
     command_prefix=config.PREFIX, 
     help_command=None, 
@@ -19,7 +20,7 @@ def noow():
 @client.event
 async def on_ready():
     member_count = client.get_guild(config.GUILD).member_count
-    print(f"[{noow()}] - Bot logged in as '{client.user}', ready to serve to {member_count} users.")
+    print(f"[INFO] [{noow()}] - Bot logged in as '{client.user}', ready to serve to {member_count} users.")
 
 @client.event
 async def on_command_error(ctx, error):
@@ -36,11 +37,13 @@ async def on_application_command_error(interaction: nextcord.Interaction, error)
         await interaction.send('Missing required permission(s).')
     if isinstance(error, application_checks.errors.ApplicationNotOwner):
         await interaction.send('Missing required permission(s).')
+    else:
+        print(f'[ERROR] [{noow()}] {error}')
     
-print(f'[{noow()}] - The bot is starting...')
+print(f'[INFO] [{noow()}] - The bot is starting...')
 for file in os.listdir('cogs'):
     if file.endswith('.py'):
         client.load_extension(f'cogs.{file[:-3]}')
-        print(f'[{noow()}] - cogs.{file[:-3]} loaded.')
+        print(f'[INFO] [{noow()}] - cogs.{file[:-3]} loaded.')
 
 client.run(config.TOKEN)
