@@ -1,4 +1,4 @@
-import nextcord, config, os, asyncio, cooldowns, socket, datetime
+import nextcord, config, socket, cooldowns, socket, datetime
 from nextcord.ext import commands, application_checks, tasks
 
 class buttons(nextcord.ui.View):
@@ -31,10 +31,18 @@ class server(commands.Cog):
         await btns.wait()
         if btns.value:
             try:
-                os.system(f"taskkill /f /im \"{config.SERVER_FILE_NAME}\"")
-                await asyncio.sleep(5)
-                os.startfile(config.SERVER_FILE_PATH)
-                await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
+                sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                sock.connect((config.HOST, config.SERVER_REMOTE_PORT))
+                sock.send(b'REBOOT')
+                while True:
+                    data = sock.recv(4096)
+                    break
+
+                if data == b'REBOOT SUCCESS':
+                    await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
+                    print(f'[INFO] [{self.noow()}] - Server restarted by {interaction.user}')
+                else:
+                    await interaction.send('An error occurred.', ephemeral=True)
             except Exception:
                 await interaction.send('An error occurred.', ephemeral=True)
         else:
