@@ -11,7 +11,7 @@ class general(commands.Cog):
         embed = nextcord.Embed(
             title=f"About {self.client.user.name}", 
             color=0,
-            description=f"**✨ Change Log**\n• Cubot v2.0 released.\n• All commands changed to slash commands.\n• Added Watch Together feature.\nAdded snipe feature. :)"
+            description=f"**✨ Change Log**\n• Cubot v2.0 released.\n• All commands changed to slash commands.\n• Added Watch Together feature.\n• Added snipe feature. :)"
         )
 
         current_time = time.time()
