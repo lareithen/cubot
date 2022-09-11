@@ -11,7 +11,7 @@ class utils(commands.Cog):
             return
 
         if f'<@{self.client.user.id}>' == message.content:
-                await message.channel.send(f'I am active.')
+                await message.channel.send(f'Hi, I am Cubot.')
 
         if message.channel.id == config.SUGGESTIONS_CHANNEL:
             await message.add_reaction('⬆️')
@@ -31,10 +31,14 @@ class utils(commands.Cog):
             member = guild.get_member(payload.user_id)
             await member.remove_roles(role)
 
-    """
+    # this feat. is in test phase
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         if message.author.bot:
+            return
+
+        author_roles = [role.id for role in message.author.roles]
+        if 1004433173209424004 in author_roles:
             return
 
         message_time = message.created_at 
@@ -47,7 +51,6 @@ class utils(commands.Cog):
             )
             embed.set_footer(text='If you write a message and delete it within 10 seconds, Cubot will snipe it.', icon_url=self.client.user.avatar)
             await message.channel.send(embed=embed)
-    """
         
 def setup(client):
 	client.add_cog(utils(client))
