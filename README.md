@@ -8,6 +8,6 @@ Official bot of [Cubix Worlds Discord Server](https://discord.gg/8XByfRES7n).
 
 ## TODO
 
-- [ ] Private voice channel system (on unstable branch for now)
+- [ ] Private voice channel system
 - [ ] Economy & currency system
 - [ ] AFK system
