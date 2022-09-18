@@ -30,27 +30,6 @@ class utils(commands.Cog):
             role = nextcord.utils.get(guild.roles, id=config.SERVER_STATUS_ROLE)
             member = guild.get_member(payload.user_id)
             await member.remove_roles(role)
-
-    # this feat. is in test phase
-    @commands.Cog.listener()
-    async def on_message_delete(self, message):
-        if message.author.bot:
-            return
-
-        author_roles = [role.id for role in message.author.roles]
-        if 1004433173209424004 in author_roles:
-            return
-
-        message_time = message.created_at 
-        now = datetime.datetime.now(datetime.timezone.utc)
-        if now < message_time + datetime.timedelta(seconds=10):
-            embed = nextcord.Embed(
-                color=0,
-                title=f'{message.author} said:',
-                description=message.content
-            )
-            embed.set_footer(text='If you write a message and delete it within 10 seconds, Cubot will snipe it.', icon_url=self.client.user.avatar)
-            await message.channel.send(embed=embed)
         
 def setup(client):
 	client.add_cog(utils(client))
