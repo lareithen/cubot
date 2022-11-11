@@ -11,7 +11,7 @@ class utils(commands.Cog):
             return
 
         if f'<@{self.client.user.id}>' == message.content:
-                await message.channel.send(f'Hi, I am Cubot.')
+                await message.add_reaction('👀')
 
         if message.channel.id == config.SUGGESTIONS_CHANNEL:
             await message.add_reaction('⬆️')
