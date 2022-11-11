@@ -35,7 +35,7 @@ class server(commands.Cog):
                 await asyncio.sleep(5)
                 os.startfile(config.SERVER_FILE_PATH)
                 await interaction.channel.send(f'**"Server is back online, have fun!"**\n~{interaction.user}')
-                print(f'[INFO] [{self.noow()}] - Server restarted by {interaction.user}')
+                print(f'[INFO] [{self.now()}] - Server restarted by {interaction.user}')
             except Exception:
                 await interaction.send('An error occurred.', ephemeral=True)
         else:
@@ -46,7 +46,7 @@ class server(commands.Cog):
         result = sock.connect_ex((host, port))
         return result
 
-    def noow(self):
+    def now(self):
         time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         return time
 
@@ -81,19 +81,19 @@ class server(commands.Cog):
                 if last_message == server_on_desc:
                     await channel.purge(limit=1)
                     await channel.send(embed=server_off_embed)
-                    print(f'[{self.noow()}] - The server is off.')
+                    print(f'[{self.now()}] - The server is off.')
             else:
                 await channel.send(embed=server_off_embed)
-                print(f'[{self.noow()}] - The server is off.')
+                print(f'[{self.now()}] - The server is off.')
         else: # server on
             if last_message:
                 if last_message == server_off_desc:
                     await channel.purge(limit=1)
                     await channel.send(f'<@&{config.SERVER_STATUS_ROLE}>', embed=server_on_embed)
-                    print(f'[{self.noow()}] - The server is on.')
+                    print(f'[INFO] [{self.now()}] - The server is on.')
             else:
                 await channel.send(f'<@&{config.SERVER_STATUS_ROLE}>', embed=server_on_embed)
-                print(f'[{self.noow()}] - The server is on.')
+                print(f'[INFO] [{self.now()}] - The server is on.')
                
     @check_server.before_loop
     async def check_server_before(self):
